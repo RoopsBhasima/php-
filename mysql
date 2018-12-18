@@ -1,0 +1,162 @@
+Setting environment for using XAMPP for Windows.
+Student@COM40 e:\xampp
+# mysql -u root
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 2
+Server version: 5.6.25 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2015, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| cdcol              |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| scthirda           |
+| test               |
+| webauth            |
++--------------------+
+8 rows in set (0.00 sec)
+
+mysql> Use wilson;
+ERROR 1049 (42000): Unknown database 'wilson'
+mysql> create database wilson;
+Query OK, 1 row affected (0.02 sec)
+
+mysql> Use wilson;
+Database changed
+mysql> show tables;
+Empty set (0.00 sec)
+
+mysql> desc maka;
+ERROR 1146 (42S02): Table 'wilson.maka' doesn't exist
+mysql> create table maka
+    -> (
+    -> Name string
+    -> ,
+    -> Number
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that
+corresponds to your MySQL server version for the right syntax to use near 'strin
+g
+,
+Number
+)' at line 3
+mysql> create table maka
+    -> (
+    -> name int,
+    -> number int
+    -> );
+Query OK, 0 rows affected (0.20 sec)
+
+mysql> desc maka;
++--------+---------+------+-----+---------+-------+
+| Field  | Type    | Null | Key | Default | Extra |
++--------+---------+------+-----+---------+-------+
+| name   | int(11) | YES  |     | NULL    |       |
+| number | int(11) | YES  |     | NULL    |       |
++--------+---------+------+-----+---------+-------+
+2 rows in set (0.01 sec)
+
+mysql> INSERT INTO maka
+    -> VALUES('12','34');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> desc maka;
++--------+---------+------+-----+---------+-------+
+| Field  | Type    | Null | Key | Default | Extra |
++--------+---------+------+-----+---------+-------+
+| name   | int(11) | YES  |     | NULL    |       |
+| number | int(11) | YES  |     | NULL    |       |
++--------+---------+------+-----+---------+-------+
+2 rows in set (0.01 sec)
+
+mysql> show table;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that
+corresponds to your MySQL server version for the right syntax to use near '' at
+line 1
+mysql> show tables;
++------------------+
+| Tables_in_wilson |
++------------------+
+| maka             |
++------------------+
+1 row in set (0.00 sec)
+
+mysql> desc maka;
++--------+---------+------+-----+---------+-------+
+| Field  | Type    | Null | Key | Default | Extra |
++--------+---------+------+-----+---------+-------+
+| name   | int(11) | YES  |     | NULL    |       |
+| number | int(11) | YES  |     | NULL    |       |
++--------+---------+------+-----+---------+-------+
+2 rows in set (0.01 sec)
+
+mysql> show tables;
++------------------+
+| Tables_in_wilson |
++------------------+
+| maka             |
++------------------+
+1 row in set (0.00 sec)
+
+mysql> create table hehe
+    -> (
+    -> name varchar(50),
+    -> password varchar(30),
+    -> id int,
+    -> id2 int primary key auto_increment,
+    -> email varchar(50),
+    -> role tinyint(2),
+    -> status tinyint(1)
+    -> );
+Query OK, 0 rows affected (0.15 sec)
+
+mysql> desc hehe;
++----------+-------------+------+-----+---------+----------------+
+| Field    | Type        | Null | Key | Default | Extra          |
++----------+-------------+------+-----+---------+----------------+
+| name     | varchar(50) | YES  |     | NULL    |                |
+| password | varchar(30) | YES  |     | NULL    |                |
+| id       | int(11)     | YES  |     | NULL    |                |
+| id2      | int(11)     | NO   | PRI | NULL    | auto_increment |
+| email    | varchar(50) | YES  |     | NULL    |                |
+| role     | tinyint(2)  | YES  |     | NULL    |                |
+| status   | tinyint(1)  | YES  |     | NULL    |                |
++----------+-------------+------+-----+---------+----------------+
+7 rows in set (0.02 sec)
+
+mysql> show tables;
++------------------+
+| Tables_in_wilson |
++------------------+
+| hehe             |
+| maka             |
++------------------+
+2 rows in set (0.00 sec)
+
+mysql> INSERT INTO hehe
+    -> (name, password, id, email, role, status)
+    -> VALUES
+    -> ('Wilson','Wilcy','2','wilsonshresthaapps@gmail.com','1','0');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select name,password from hehe;
++--------+----------+
+| name   | password |
++--------+----------+
+| Wilson | Wilcy    |
++--------+----------+
+1 row in set (0.00 sec)
+
+mysql>
