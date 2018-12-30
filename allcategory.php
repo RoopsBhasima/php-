@@ -23,6 +23,15 @@ include('inc_session.php');?>
             <div class="row">
                 <div class="col-lg-12">
                     <h1 class="page-header">All Categories</h1>
+
+                    <?php
+
+                    if(isset($_GET['message']))
+                    {
+                        echo "<span class='alertalert-success'>".$_GET['message']."</span>";
+                    }
+                    ?>
+                    
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -60,7 +69,10 @@ include('inc_session.php');?>
 		echo "<td>". $row['id']."</td>";
 		echo "<td>". $row['name']."</td>";
 		echo "<td>". $row['status']."</td>";
-        echo "<td> EDIT | DELETE </td>"; 
+        echo "<td>
+        <a href=editdeletecategory.php?id=".$row['id']."&action=edit> EDIT <a/>
+        <a href=editdeletecategory.php?id=".$row['id']."&action=delete> DELETE <a/>
+         </td>"; 
         echo "</tr>";
 	}
 	?>
