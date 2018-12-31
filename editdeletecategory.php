@@ -1,6 +1,16 @@
 <?php
 include('inc_session.php');
 include('functions.php');
+
+if(isset($_POST['update']))
+{
+	$uid=$_POST['uid'];
+	$uname=$_POST['uname'];
+	$ustatus=$_POST['ustatus'];
+
+	updateCategory($uid, $uname, $ustatus);
+}
+
 if(isset($_GET['id'])&&isset($_GET['action']))
 {
 	//do something
@@ -8,7 +18,8 @@ if(isset($_GET['id'])&&isset($_GET['action']))
 	$action=$_GET['action'];
 	if ($action=='edit')
 	{
-		echo "edit";
+		editCategory($id);
+		//echo "edit";
 
 	}
 	elseif($action=='delete')
