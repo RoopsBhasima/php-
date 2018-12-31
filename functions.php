@@ -39,7 +39,7 @@ function editCategory($id)
 
 function updateCategory($uid, $uname, $ustatus)
 {
-	$stmt="UPDATE category SET name='$uname' status='$ustatus' WHERE id=$id";
+	$stmt="UPDATE category SET name='$uname', status='$ustatus' WHERE id=$uid";
 	include('connection.php');
 	$qry=mysqli_query($conn,$stmt);
 	if($qry)
