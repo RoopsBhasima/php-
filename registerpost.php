@@ -12,40 +12,8 @@ if(isset($_POST['submit']))
     $shortstory=$_POST['shortstory'];
     $fullstory=$_POST['fullstory'];
     $postdate=$_POST['postdate'];
-    $category_id=$_POST['category_id'];
-    $user_id=$_POST['user_id'];
-$tmpname=$_FILES['Upload']['tmp_name'];
-$size=$_FILES['Upload']['size'];
-$name=$_FILES['Upload']['name'];
-$type=$_FILES['Upload']['type'];
-$path="../uploads/";
-//Use that or .
-$fpath=$path.$name;
-if(!empty($name))
-{
-if($type=="image/jpeg" OR $type=="image/jpg" OR $type=="image/png" )
-{
-if(move_uploaded_file($tmpname,$path.$name))
-{
-  echo "File Uploaded";
-  echo "<img src=$path$name>";
-}
-else
-{
-  echo "Something Wrong";
-}
-}
-else
-{
-  echo "Unknown image type";
-}
-}
-else
-{
-  echo "Please Choose a file";
-}
     //making statement
-$stmt="INSERT INTO post(title,keyword,description,heading,shortstory,fullstory,image,category_id,postdate,user_id,status) VALUES ('$title','$keyword','$description','$heading','$shortstory','$fullstory', '$name' ,$category_id,$postdate,$user_id,0)";
+$stmt="INSERT INTO post(title,keyword,description,heading,shortstory,fullstory,image,category_id,postdate,user_id,status) VALUES ('$title','$keyword','$description','$heading','$shortstory','$fullstory', 0 ,2,$postdate,1,0)";
 //making connection
 include('connection.php');
 //making query
@@ -61,9 +29,8 @@ else {echo "Somthing wrong while register the user";}
 
 <head>
 
-    
-
-    <?php include('inc_headsection.php');?>
+    <?php include('inc_headsection.php');
+    ?>
     <link href="datatable/jquery.dataTables.min.css" type="text/css" rel="stylesheet"> 
 <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -93,45 +60,17 @@ else {echo "Somthing wrong while register the user";}
             <div class="col-md-12">
             
     <form method="post" action="" name="frmRegister" enctype="multipart/form-data">
-    <textarea rows="2" cols="30" type="text" name="title" placeholder="Title"></textarea>
-    <br/>
-    <textarea rows="2" cols="30" type="text" name="keyword" placeholder="Keyword"></textarea><br/>
-    <textarea rows="2" cols="50" type="text" name="description" placeholder="Description"></textarea><br/>
-    <textarea rows="1" cols="50" type="text" name="heading" placeholder="Heading"></textarea><br/>
-    <textarea rows="4" cols="50" type="text" name="shortstory" placeholder="Shortstory"></textarea><br/>
-    <textarea rows="6" cols="50" type="text" name="fullstory" placeholder="Fullstory"></textarea><br/>
-    <input type="text" name="postdate" placeholder="PostDate"><br/>
-    <select size=1 name="category_id">
-           <?php
-           $stmt="SELECT * FROM category WHERE status=1";
-           include ('connection.php');
-           $qry=mysqli_query($conn,$stmt);
-           while($row=mysqli_fetch_array($qry))
-           {
-            echo "<option value=".$row['id'].">".$row['name']."</option>";
-           }
-           mysqli_close($conn);?>
-
-           </select>
-            <select size=1 name="user_id">
-           <?php
-           $stmt="SELECT * FROM users WHERE status=0";
-           include ('connection.php');
-           $qry=mysqli_query($conn,$stmt);
-           while($row=mysqli_fetch_array($qry))
-           {
-            echo "<option value=".$row['id'].">".$row['username']."</option>";
-           }
-           mysqli_close($conn);?>
-           </select>      
-       </br></br>
-
-<form method="POST" name="ImgUpload" action="" enctype="multipart/form-data">
-  <input type="file" name="Upload"/>
-  <input type="submit" name="submit" value="Register" />
-</form>
+    <input type="text" name="title" placeholder="Title"><br/>
+    <input type="text" name="keyword" placeholder="Keyword"><br/>
+    <input type="text" name="description" placeholder="Description"><br/>
+    <input type="text" name="heading" placeholder="Heading"><br/>
+    <input type="text" name="shortstory" placeholder="Shortstory"><br/>
+    <input type="text" name="fullstory" placeholder="Fullstory"><br/>
+    <input type="date" name="postdate" placeholder="PostDate"><br/>
+    <input type="submit" name="submit" value="Register"><br/>
 </form>
            
+       
             </div>
 
             

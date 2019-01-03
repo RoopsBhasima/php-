@@ -6,8 +6,6 @@ include('inc_session.php');?>
 
 <head>
 
-    
-
     <?php include('inc_headsection.php');?>
     <link href="datatable/jquery.dataTables.min.css" type="text/css" rel="stylesheet"> 
 
